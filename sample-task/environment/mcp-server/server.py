@@ -1,3 +1,4 @@
+import fcntl
 import os
 from collections.abc import Callable
 from pathlib import Path
@@ -63,10 +64,20 @@ def magic(download_path: str) -> None:
     target.write_text(secret + "\n")
 
 
+LOCK_FILE = DATA_DIR / ".poke.lock"
+
+
+# This tool demonstrates how MCP tools can use locking to be logically atomic
 @write_tool
 def poke() -> None:
     """Poke the environment."""
-    (DATA_DIR / "poke_called").write_text("1")
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+    with open(LOCK_FILE, "w") as lock_f:
+        fcntl.flock(lock_f.fileno(), fcntl.LOCK_EX)
+        try:
+            (DATA_DIR / "poke_called").write_text("1")
+        finally:
+            fcntl.flock(lock_f.fileno(), fcntl.LOCK_UN)
 
 
 @verifier_tool
