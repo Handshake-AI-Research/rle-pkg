@@ -1,0 +1,36 @@
+[project]
+name = "mcp-server"
+version = "0.1.0"
+requires-python = ">=3.14"
+dependencies = [
+    "fastmcp>=2.14.5",
+]
+
+[dependency-groups]
+dev = [
+    "mypy>=1.19.1",
+    "ruff>=0.15.1",
+]
+
+[tool.ruff]
+line-length = 120
+lint.select = [
+    # pycodestyle
+    "E",
+    "W",
+    # Pyflakes
+    "F",
+    # pyupgrade
+    "UP",
+    # flake8-bugbear
+    "B",
+    # flake8-simplify
+    "SIM",
+    # isort
+    "I",
+    # ruff-specific rules
+    "RUF",
+]
+
+[tool.mypy]
+strict = true

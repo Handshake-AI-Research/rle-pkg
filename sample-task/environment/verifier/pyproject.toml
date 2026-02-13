@@ -1,0 +1,45 @@
+[project]
+name = "verifier"
+version = "0.1.0"
+requires-python = ">=3.14"
+dependencies = [
+    "openhands-sdk>=1.11.2",
+    "openhands-tools>=1.11.2",
+    "pydantic>=2.12.5",
+]
+
+[dependency-groups]
+dev = [
+    "mypy>=1.19.1",
+    "ruff>=0.15.1",
+]
+
+[tool.uv]
+package = true
+
+[project.scripts]
+verifier = "verifier.main:main"
+verifier-judge = "verifier.judge:main"
+
+[tool.ruff]
+line-length = 120
+lint.select = [
+    # pycodestyle
+    "E",
+    "W",
+    # Pyflakes
+    "F",
+    # pyupgrade
+    "UP",
+    # flake8-bugbear
+    "B",
+    # flake8-simplify
+    "SIM",
+    # isort
+    "I",
+    # ruff-specific rules
+    "RUF",
+]
+
+[tool.mypy]
+strict = true

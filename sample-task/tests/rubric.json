@@ -1,0 +1,10 @@
+[
+  {
+    "criteria": "The file foo.txt contains the number '0'.",
+    "weight": 2.0
+  },
+  {
+    "criteria": "The poke() tool was called.",
+    "weight": 1.0
+  }
+]
