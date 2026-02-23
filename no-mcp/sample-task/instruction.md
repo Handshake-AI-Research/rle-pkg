@@ -1,0 +1,1 @@
+Create a file "foo.txt" with the contents "bar".
