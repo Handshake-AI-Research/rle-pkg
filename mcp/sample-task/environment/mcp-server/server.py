@@ -45,7 +45,7 @@ def verifier_tool[F: Callable[..., Any]](func: F) -> F:
 
 
 @write_tool
-def magic(download_path: str) -> None:
+def magic(download_path: str) -> str:
     """Download a magic word to the given path.
 
     Args:
@@ -62,6 +62,7 @@ def magic(download_path: str) -> None:
     # agent user cannot access this data directly
     secret = (DATA_DIR / "secret.txt").read_text().splitlines()[0]
     target.write_text(secret + "\n")
+    return f"downloaded to {target}"
 
 
 LOCK_FILE = DATA_DIR / ".poke.lock"
@@ -69,7 +70,7 @@ LOCK_FILE = DATA_DIR / ".poke.lock"
 
 # This tool demonstrates how MCP tools can use locking to be logically atomic
 @write_tool
-def poke() -> None:
+def poke() -> str:
     """Poke the environment."""
     DATA_DIR.mkdir(parents=True, exist_ok=True)
     with open(LOCK_FILE, "w") as lock_f:
@@ -78,6 +79,7 @@ def poke() -> None:
             (DATA_DIR / "poke_called").write_text("1")
         finally:
             fcntl.flock(lock_f.fileno(), fcntl.LOCK_UN)
+    return "poked"
 
 
 @verifier_tool
