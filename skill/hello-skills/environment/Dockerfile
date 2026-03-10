@@ -43,5 +43,4 @@ RUN mkdir /oracle && chown -R agent:agent /oracle && chmod -R a+rw /oracle
 # to the agent's skills directory via the skills_dir config.
 COPY skills/ /skills/
 
-USER agent
 WORKDIR /app

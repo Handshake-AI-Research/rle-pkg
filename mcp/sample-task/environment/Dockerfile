@@ -81,6 +81,5 @@ RUN UV_TOOL_DIR=/opt/uv-tools UV_TOOL_BIN_DIR=/usr/local/bin \
     rm -rf /tmp/verifier-src && \
     chmod -R a+rX /opt/uv-tools /opt/uv-python
 
-USER agent
 WORKDIR /home/agent/workspace
 CMD ["/bin/bash"]

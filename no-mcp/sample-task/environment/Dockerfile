@@ -53,6 +53,5 @@ RUN mkdir /installed-agent && chown -R agent:agent /installed-agent && chmod -R 
 # Set up /oracle directory (for Harbor's oracle agent)
 RUN mkdir /oracle && chown -R agent:agent /oracle && chmod -R a+rw /oracle
 
-USER agent
 WORKDIR /home/agent/workspace
 CMD ["/bin/bash"]
