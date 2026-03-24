@@ -39,6 +39,8 @@ RUN mkdir /installed-agent && chown -R agent:agent /installed-agent && chmod -R 
 # Set up /oracle directory (for Harbor's oracle agent)
 RUN mkdir /oracle && chown -R agent:agent /oracle && chmod -R a+rw /oracle
 
+RUN mkdir /app && chown -R agent:agent /app && chmod -R a+r /app
+
 # Copy skills into the container at /skills so Harbor can distribute them
 # to the agent's skills directory via the skills_dir config.
 COPY skills/ /skills/
