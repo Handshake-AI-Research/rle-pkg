@@ -1,3 +1,3 @@
 #!/bin/bash
 
-exec verifier --config /tests/verifier.toml
+exec gandalf-the-grader --config /tests/grader.toml

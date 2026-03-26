@@ -73,12 +73,10 @@ COPY --from=build /tmp/mcp-server-run /usr/bin/mcp-server
 RUN chown environment:environment /usr/bin/mcp-server && \
     chmod u+s /usr/bin/mcp-server
 
-# Install the verifier
-COPY verifier /tmp/verifier-src
+# Install the grader (gandalf-the-grader)
 RUN UV_TOOL_DIR=/opt/uv-tools UV_TOOL_BIN_DIR=/usr/local/bin \
     UV_PYTHON_INSTALL_DIR=/opt/uv-python \
-    uv tool install /tmp/verifier-src && \
-    rm -rf /tmp/verifier-src && \
+    uv tool install git+https://github.com/Handshake-AI-Research/gandalf-the-grader.git@markusduecker/hpt-28-cleanup && \
     chmod -R a+rX /opt/uv-tools /opt/uv-python
 
 WORKDIR /home/agent/workspace
