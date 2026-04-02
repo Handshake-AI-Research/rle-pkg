@@ -77,7 +77,8 @@ RUN chown environment:environment /usr/bin/mcp-server && \
 RUN UV_TOOL_DIR=/opt/uv-tools UV_TOOL_BIN_DIR=/usr/local/bin \
     UV_PYTHON_INSTALL_DIR=/opt/uv-python \
     uv tool install git+https://github.com/Handshake-AI-Research/gandalf-the-grader.git@markusduecker/hpt-28-cleanup && \
-    chmod -R a+rX /opt/uv-tools /opt/uv-python
+    chmod -R a+rX /opt/uv-tools && \
+    ([ -d /opt/uv-python ] && chmod -R a+rX /opt/uv-python || true)
 
 WORKDIR /home/agent/workspace
 CMD ["/bin/bash"]
