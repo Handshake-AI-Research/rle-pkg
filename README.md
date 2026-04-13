@@ -14,7 +14,7 @@ The setting we consider is one that is different from, for example, [Terminal-Be
 
 The design in this repository is inspired by [OKWS (USENIX ATC '04)](https://www.usenix.org/legacy/publications/library/proceedings/usenix04/tech/general/full_papers/krohn/krohn.pdf), using ingredients like Linux users, processes, filesystem ownership and permissions, setuid binaries, and sudo.
 
-This demo implementation is built to follow the [Harbor](https://harborframework.com/) task format. Currently, running this example requires a [fork of Harbor](https://github.com/anishathalye/harbor/tree/configurable-user) that allows specifying the user for running the agent and verifier. One motivation for sharing this design is to motivate merging this feature back into Harbor.
+This demo implementation is built to follow the [Harbor](https://harborframework.com/) task format.
 
 ## Architecture
 
@@ -54,17 +54,14 @@ The code is well-commented to explain details of each component.
 - [`sample-task/environment/data`](sample-task/environment/data): private data (initial state) for the environment
 - [`sample-task/environment/mcp-server-run.c`](sample-task/environment/mcp-server-run.c): setuid binary trampoline that runs the MCP server
 - [`sample-task/environment/mcp-server`](sample-task/environment/mcp-server): MCP server implementation
-- [`sample-task/environment/verifier`](sample-task/environment/verifier): verifier implementation
-- [`sample-task/tests/verifier.toml`](sample-task/tests/verifier.toml): verifier configuration
+- [`sample-task/tests/grader.toml`](sample-task/tests/grader.toml): verifier configuration
 - [`sample-task/tests/rubric.json`](sample-task/tests/rubric.json): rubric
 - [`sample-task/task.toml`](sample-task/task.toml): task configuration (includes specifying the user the agent and verifier run as)
 
-In practice, the verifier (agent-as-judge implementation) would likely be an external package that is installed into the container.
+The verifier itself lives in [Handshake-AI-Research/gandalf-the-grader](https://github.com/Handshake-AI-Research/gandalf-the-grader).
 
 ## Running the example
 
-1. Install the Harbor fork (e.g., `uv tool install git+https://github.com/anishathalye/harbor.git@configurable-user`)
 1. Set `ANTHROPIC_API_KEY`
+1. `cd sample-task`
 1. Run, for example: `harbor run -p . -a claude-code -m claude-sonnet-4-5-20250929`
-    - You can also try another supported agent, like `-a openhands`
-    - The example in this repo relies on MCP support in Harbor, which is currently [incomplete](https://github.com/laude-institute/harbor/issues/642), so the above will not currently work with the `terminus-2` agent.
