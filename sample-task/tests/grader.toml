@@ -16,9 +16,10 @@ You have the following Python libraries pre-installed:
 3. Compute round(sinc(x)), and write the result as an integer to the file "foo.txt".
 4. Call the poke() tool.
 """
-rubric = "/tests/rubric.json"
+rubric_path = "/tests/rubric.json"
 workdir = "/home/agent/workspace"
-trajectory = "/logs/agent/trajectory.json"
+trajectory_path = "/logs/agent/trajectory.json"
+output_dir = "/logs/verifier"
 
 [[mcp_servers]]
 name = "magic-server"

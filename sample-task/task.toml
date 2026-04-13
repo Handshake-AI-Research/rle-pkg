@@ -22,4 +22,4 @@ transport = "stdio"
 command = "/usr/bin/mcp-server"
 
 [verifier.env]
-ANTHROPIC_API_KEY = "${ANTHROPIC_API_KEY}"
+LLM_API_KEY = "${ANTHROPIC_API_KEY}"

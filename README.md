@@ -14,7 +14,7 @@ The setting we consider is one that is different from, for example, [Terminal-Be
 
 The design in this repository is inspired by [OKWS (USENIX ATC '04)](https://www.usenix.org/legacy/publications/library/proceedings/usenix04/tech/general/full_papers/krohn/krohn.pdf), using ingredients like Linux users, processes, filesystem ownership and permissions, setuid binaries, and sudo.
 
-This demo implementation is built to follow the [Harbor](https://harborframework.com/) task format. Currently, running this example requires a [fork of Harbor](https://github.com/anishathalye/harbor/tree/configurable-user) that allows specifying the user for running the agent and verifier. One motivation for sharing this design is to motivate merging this feature back into Harbor.
+This demo implementation is built to follow the [Harbor](https://harborframework.com/) task format.
 
 ## Architecture
 
@@ -63,8 +63,6 @@ In practice, the verifier (agent-as-judge implementation) would likely be an ext
 
 ## Running the example
 
-1. Install the Harbor fork (e.g., `uv tool install git+https://github.com/anishathalye/harbor.git@configurable-user`)
 1. Set `ANTHROPIC_API_KEY`
+1. `cd sample-task`
 1. Run, for example: `harbor run -p . -a claude-code -m claude-sonnet-4-5-20250929`
-    - You can also try another supported agent, like `-a openhands`
-    - The example in this repo relies on MCP support in Harbor, which is currently [incomplete](https://github.com/laude-institute/harbor/issues/642), so the above will not currently work with the `terminus-2` agent.

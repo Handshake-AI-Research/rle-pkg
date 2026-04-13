@@ -1,10 +1,10 @@
 [
   {
-    "criteria": "The file foo.txt contains the number '0'.",
+    "criterion": "The file foo.txt contains the number '0'.",
     "weight": 2.0
   },
   {
-    "criteria": "The poke() tool was called.",
+    "criterion": "The poke() tool was called.",
     "weight": 1.0
   }
 ]
