@@ -9,7 +9,7 @@ FROM ubuntu:24.04
 
 # Install base dependencies
 RUN apt-get update && \
-    apt-get install -y bash curl sudo && \
+    apt-get install -y bash curl sudo tmux && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
